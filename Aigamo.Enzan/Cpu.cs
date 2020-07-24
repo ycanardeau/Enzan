@@ -546,7 +546,7 @@ namespace Aigamo.Enzan
 		public void Push(Register32 value)
 		{
 			Esp -= new Register32(4);
-			BitConverter.GetBytes(value.Value).AsMemory().CopyTo(Memory.Slice((int)(Esp - Offset).Value));
+			BitConverter.GetBytes(value.Value).CopyTo(Memory.Slice((int)(Esp - Offset).Value));
 		}
 
 		/// <summary>
