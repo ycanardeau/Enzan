@@ -35,7 +35,7 @@ namespace Aigamo.Enzan
 
 		public override string ToString() => Value.ToString();
 
-		public string ToString(string? format, IFormatProvider? provider) => ToString(format, provider);
+		public string ToString(string? format, IFormatProvider? provider) => Value.ToString(format, provider);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
 		public Register32 SignExtend() => new Register32((uint)(short)Value);
