@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/ycanardeau/Enzan</RepositoryUrl>
     <Description>Enzan is an x86 emulator written in C#.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
