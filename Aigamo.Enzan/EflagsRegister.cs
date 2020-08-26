@@ -9,49 +9,25 @@ namespace Aigamo.Enzan
 		public bool Carry
 		{
 			get => Eflags.HasFlag(Eflags.Carry);
-			set
-			{
-				if (value)
-					Eflags |= Eflags.Carry;
-				else
-					Eflags &= ~Eflags.Carry;
-			}
+			set => Eflags = value ? (Eflags | Eflags.Carry) : (Eflags & ~Eflags.Carry);
 		}
 
 		public bool Zero
 		{
 			get => Eflags.HasFlag(Eflags.Zero);
-			set
-			{
-				if (value)
-					Eflags |= Eflags.Zero;
-				else
-					Eflags &= ~Eflags.Zero;
-			}
+			set => Eflags = value ? (Eflags | Eflags.Zero) : (Eflags & ~Eflags.Zero);
 		}
 
 		public bool Sign
 		{
 			get => Eflags.HasFlag(Eflags.Sign);
-			set
-			{
-				if (value)
-					Eflags |= Eflags.Sign;
-				else
-					Eflags &= ~Eflags.Sign;
-			}
+			set => Eflags = value ? (Eflags | Eflags.Sign) : (Eflags & ~Eflags.Sign);
 		}
 
 		public bool Overflow
 		{
 			get => Eflags.HasFlag(Eflags.Overflow);
-			set
-			{
-				if (value)
-					Eflags |= Eflags.Overflow;
-				else
-					Eflags &= ~Eflags.Overflow;
-			}
+			set => Eflags = value ? (Eflags | Eflags.Overflow) : (Eflags & ~Eflags.Overflow);
 		}
 
 		/// <summary>
