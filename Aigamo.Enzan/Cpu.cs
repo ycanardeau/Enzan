@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Aigamo.Extensions.Primitives;
 
 namespace Aigamo.Enzan
 {
@@ -372,7 +373,7 @@ namespace Aigamo.Enzan
 			if (value == Register32.Empty)
 				throw new DivideByZeroException();
 
-			var dividend = BitHelper.MakeLong((int)Eax.Value, (int)Edx.Value);
+			var dividend = (Eax.Value, Edx.Value).ToInt64();
 			var tmp = new Register64((ulong)(dividend / (int)value.Value));
 			if ((long)tmp.Value > int.MaxValue || (long)tmp.Value < int.MinValue)
 				throw new ArithmeticException();

@@ -1,4 +1,5 @@
 ﻿using System;
+using Aigamo.Extensions.Primitives;
 
 namespace Aigamo.Enzan
 {
@@ -14,9 +15,9 @@ namespace Aigamo.Enzan
 
 		public bool IsEmpty => this == Empty;
 
-		public Register32 Low => new Register32((uint)BitHelper.Low((long)Value));
+		public Register32 Low => new Register32(Value.LowUInt32());
 
-		public Register32 High => new Register32((uint)BitHelper.High((long)Value));
+		public Register32 High => new Register32(Value.HighUInt32());
 
 		public static bool operator ==(Register64 left, Register64 right) => left.Equals(right);
 

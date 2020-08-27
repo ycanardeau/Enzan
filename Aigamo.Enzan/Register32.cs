@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Aigamo.Extensions.Primitives;
 
 namespace Aigamo.Enzan
 {
@@ -15,9 +16,9 @@ namespace Aigamo.Enzan
 
 		public bool IsEmpty => this == Empty;
 
-		public Register16 Low => new Register16((ushort)BitHelper.Low((int)Value));
+		public Register16 Low => new Register16(Value.LowUInt16());
 
-		public Register16 High => new Register16((ushort)BitHelper.High((int)Value));
+		public Register16 High => new Register16(Value.HighUInt16());
 
 		public bool Sign => ((Value >> 31) & 1) != 0;
 
@@ -31,9 +32,9 @@ namespace Aigamo.Enzan
 
 		public static Register32 operator *(Register32 left, Register32 right) => new Register32(left.Value * right.Value);
 
-		public Register32 WithLow(Register16 value) => new Register32((uint)BitHelper.MakeInt((short)value.Value, (short)High.Value));
+		public Register32 WithLow(Register16 value) => new Register32(Value.WithLowUInt16(value.Value));
 
-		public Register32 WithHigh(Register16 value) => new Register32((uint)BitHelper.MakeInt((short)Low.Value, (short)value.Value));
+		public Register32 WithHigh(Register16 value) => new Register32(Value.WithHighUInt16(value.Value));
 
 		public bool Equals(Register32 other) => Value == other.Value;
 

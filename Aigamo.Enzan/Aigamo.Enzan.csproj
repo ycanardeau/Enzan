@@ -14,4 +14,8 @@
     <Version>1.0.1</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Aigamo.Extensions.Primitives" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>
