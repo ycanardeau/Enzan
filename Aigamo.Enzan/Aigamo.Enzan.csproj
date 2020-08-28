@@ -14,6 +14,14 @@
     <Version>1.0.1</Version>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\Aigamo\source\repos\Enzan\Aigamo.Enzan\Aigamo.Enzan.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Aigamo\source\repos\Enzan\Aigamo.Enzan\Aigamo.Enzan.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Aigamo.Extensions.Primitives" Version="1.0.1" />
   </ItemGroup>

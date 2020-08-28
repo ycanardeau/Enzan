@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aigamo.Enzan</name>
+    </assembly>
+    <members>
+        <member name="M:Aigamo.Enzan.Cpu.Add(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Add.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Add(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Add.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.And(Aigamo.Enzan.Register8,Aigamo.Enzan.Register8)">
+            <summary>
+            Logical AND.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.And(Aigamo.Enzan.Register16,Aigamo.Enzan.Register16)">
+            <summary>
+            Logical AND.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.And(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Logical AND.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.And(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Logical AND.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Call(Aigamo.Enzan.Register32)">
+            <summary>
+            Call procedure.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Cdq">
+            <summary>
+            Convert doubleword to quadword.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Cmp(Aigamo.Enzan.Register16,Aigamo.Enzan.Register16)">
+            <summary>
+            Compare two operands.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Cmp(Aigamo.Enzan.Register16,Aigamo.Enzan.Register8)">
+            <summary>
+            Compare two operands.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Cmp(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Compare two operands.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Cmp(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Compare two operands.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Dec(Aigamo.Enzan.Register32)">
+            <summary>
+            Decrement by 1.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fadd(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Add.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fchs(Aigamo.Enzan.Register64)">
+            <summary>
+            Change sign.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fcom(Aigamo.Enzan.Register64)">
+            <summary>
+            Compare floating point values.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fcos(Aigamo.Enzan.Register64)">
+            <summary>
+            Cosine.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fdiv(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Reverse divide.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fdivr(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Reverse divide.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fidiv(Aigamo.Enzan.Register64,Aigamo.Enzan.Register32)">
+            <summary>
+            Divide.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fild(Aigamo.Enzan.Register32)">
+            <summary>
+            Load integer.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fimul(Aigamo.Enzan.Register64,Aigamo.Enzan.Register32)">
+            <summary>
+            Multiply.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fld(Aigamo.Enzan.Register64)">
+            <summary>
+            Load floating point value.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fnstsw">
+            <summary>
+            Store x87 FPU status word.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fpatan(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Partial arctangent.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fmul(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Multiply.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fmul(Aigamo.Enzan.Register64,Aigamo.Enzan.Register32)">
+            <summary>
+            Multiply.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fsin(Aigamo.Enzan.Register64)">
+            <summary>
+            Sine.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fst(Aigamo.Enzan.Register64)">
+            <summary>
+            Store floating point value.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fsub(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Subtract.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fsubr(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Reverse subtract.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Fxch(Aigamo.Enzan.Register64,Aigamo.Enzan.Register64)">
+            <summary>
+            Exchange register contents.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Idiv(Aigamo.Enzan.Register32)">
+            <summary>
+            Signed divide.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Imul(Aigamo.Enzan.Register32)">
+            <summary>
+            Signed multiply.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Imul(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Signed multiply.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Inc(Aigamo.Enzan.Register32)">
+            <summary>
+            Increment by 1.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jb">
+            <summary>
+            Jump if below.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Je">
+            <summary>
+            Jump if equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jne">
+            <summary>
+            Jump if not equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Ja">
+            <summary>
+            Jump if above.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jns">
+            <summary>
+            Jump if not sign.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jl">
+            <summary>
+            Jump if less.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jge">
+            <summary>
+            Jump if greater or equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jle">
+            <summary>
+            Jump if less or equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jg">
+            <summary>
+            Jump if greater.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.Cpu.Jae">
+            <summary>
+            Jump if above or equal.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Lea(Aigamo.Enzan.Register32)">
+            <summary>
+            Load effective address.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Mov(Aigamo.Enzan.Register8)">
+            <summary>
+            Move.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Mov(Aigamo.Enzan.Register16)">
+            <summary>
+            Move.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Mov(Aigamo.Enzan.Register32)">
+            <summary>
+            Move.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Movsx(Aigamo.Enzan.Register16)">
+            <summary>
+            Move with sign-extension.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Neg(Aigamo.Enzan.Register32)">
+            <summary>
+            Two's complement negation.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Or(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Logical inclusive OR.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Or(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Logical inclusive OR.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Pop32">
+            <summary>
+            Pop a value from the stack.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Push(Aigamo.Enzan.Register32)">
+            <summary>
+            Push doubleword onto the stack.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Sar(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Arithmetic right shift.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Sbb(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Integer subtraction with borrow.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Sete">
+            <summary>
+            Set byte if equal.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Setg">
+            <summary>
+            Set byte if greater.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Shl(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Left shift.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Shr(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Logical right shift.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Sub(Aigamo.Enzan.Register16,Aigamo.Enzan.Register16)">
+            <summary>
+            Subtract.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Sub(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Subtract.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Sub(Aigamo.Enzan.Register32,Aigamo.Enzan.Register8)">
+            <summary>
+            Subtract.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Test(Aigamo.Enzan.Register8,Aigamo.Enzan.Register8)">
+            <summary>
+            Logical compare.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Test(Aigamo.Enzan.Register16,Aigamo.Enzan.Register16)">
+            <summary>
+            Logical compare.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Test(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Logical compare.
+            </summary>
+        </member>
+        <member name="M:Aigamo.Enzan.Cpu.Xor(Aigamo.Enzan.Register32,Aigamo.Enzan.Register32)">
+            <summary>
+            Logical exclusive OR.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jb">
+            <summary>
+            Jump if below.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Je">
+            <summary>
+            Jump if equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jne">
+            <summary>
+            Jump if not equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Ja">
+            <summary>
+            Jump if above.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jns">
+            <summary>
+            Jump if not sign.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jl">
+            <summary>
+            Jump if less.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jge">
+            <summary>
+            Jump if greater or equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jle">
+            <summary>
+            Jump if less or equal.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jg">
+            <summary>
+            Jump if greater.
+            </summary>
+        </member>
+        <member name="P:Aigamo.Enzan.EflagsRegister.Jae">
+            <summary>
+            Jump if above or equal.
+            </summary>
+        </member>
+    </members>
+</doc>
