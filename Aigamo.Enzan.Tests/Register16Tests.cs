@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace Aigamo.Enzan.Tests
 {
@@ -7,7 +8,7 @@ namespace Aigamo.Enzan.Tests
 		[Fact]
 		public void DefaultConstructorTest()
 		{
-			Assert.Equal(Register16.Empty, new Register16());
+			new Register16().Should().Be(Register16.Empty);
 		}
 
 		[Theory]
@@ -19,7 +20,7 @@ namespace Aigamo.Enzan.Tests
 			var r1 = new Register16(value);
 			var r2 = new Register16(value);
 
-			Assert.Equal(r1, r2);
+			r2.Should().Be(r1);
 		}
 
 		[Theory]
@@ -32,35 +33,35 @@ namespace Aigamo.Enzan.Tests
 			var r2 = new Register16((ushort)(value / 2 - 1));
 			var r3 = new Register16(value);
 
-			Assert.True(r1 == r3);
-			Assert.True(r1 != r2);
-			Assert.True(r2 != r3);
+			(r1 == r3).Should().BeTrue();
+			(r1 != r2).Should().BeTrue();
+			(r2 != r3).Should().BeTrue();
 
-			Assert.True(r1.Equals(r3));
-			Assert.False(r1.Equals(r2));
-			Assert.False(r2.Equals(r3));
+			r1.Equals(r3).Should().BeTrue();
+			r1.Equals(r2).Should().BeFalse();
+			r2.Equals(r3).Should().BeFalse();
 
-			Assert.True(r1.Equals((object)r3));
-			Assert.False(r1.Equals((object)r2));
-			Assert.False(r2.Equals((object)r3));
+			r1.Equals((object)r3).Should().BeTrue();
+			r1.Equals((object)r2).Should().BeFalse();
+			r2.Equals((object)r3).Should().BeFalse();
 
-			Assert.Equal(r1.GetHashCode(), r3.GetHashCode());
+			r3.GetHashCode().Should().Be(r1.GetHashCode());
 		}
 
 		[Fact]
 		public void EqualityTest_NotRegister16()
 		{
 			var r = new Register16(0);
-			Assert.False(r.Equals(null));
-			Assert.False(r.Equals(0));
+			r.Equals(null).Should().BeFalse();
+			r.Equals(0).Should().BeFalse();
 		}
 
 		[Fact]
 		public void GetHashCodeTest()
 		{
 			var r = new Register16(10);
-			Assert.Equal(r.GetHashCode(), new Register16(10).GetHashCode());
-			Assert.NotEqual(r.GetHashCode(), new Register16(20).GetHashCode());
+			new Register16(10).GetHashCode().Should().Be(r.GetHashCode());
+			new Register16(20).GetHashCode().Should().NotBe(r.GetHashCode());
 		}
 
 		[Theory]
@@ -69,43 +70,43 @@ namespace Aigamo.Enzan.Tests
 		public void ToStringTest(ushort value)
 		{
 			var r = new Register16(value);
-			Assert.Equal($"{r.Value}", r.ToString());
+			r.ToString().Should().Be($"{r.Value}");
 		}
 
 		[Fact]
 		public void LowTest()
 		{
-			Assert.Equal(new Register8(0x00), new Register16(0x0000).Low);
-			Assert.Equal(new Register8(0x34), new Register16(0x1234).Low);
-			Assert.Equal(new Register8(0x65), new Register16(0x8765).Low);
-			Assert.Equal(new Register8(0xFF), new Register16(0xFFFF).Low);
+			new Register16(0x0000).Low.Should().Be(new Register8(0x00));
+			new Register16(0x1234).Low.Should().Be(new Register8(0x34));
+			new Register16(0x8765).Low.Should().Be(new Register8(0x65));
+			new Register16(0xFFFF).Low.Should().Be(new Register8(0xFF));
 		}
 
 		[Fact]
 		public void HighTest()
 		{
-			Assert.Equal(new Register8(0x00), new Register16(0x0000).High);
-			Assert.Equal(new Register8(0x12), new Register16(0x1234).High);
-			Assert.Equal(new Register8(0x87), new Register16(0x8765).High);
-			Assert.Equal(new Register8(0xFF), new Register16(0xFFFF).High);
+			new Register16(0x0000).High.Should().Be(new Register8(0x00));
+			new Register16(0x1234).High.Should().Be(new Register8(0x12));
+			new Register16(0x8765).High.Should().Be(new Register8(0x87));
+			new Register16(0xFFFF).High.Should().Be(new Register8(0xFF));
 		}
 
 		[Fact]
 		public void WithLowTest()
 		{
-			Assert.Equal(new Register16(0x0012), Register16.Empty.WithLow(new Register8(0x12)));
-			Assert.Equal(new Register16(0x0087), Register16.Empty.WithLow(new Register8(0x87)));
-			Assert.Equal(new Register16(0x1234), new Register16(0x1200).WithLow(new Register8(0x34)));
-			Assert.Equal(new Register16(0x8765), new Register16(0x8700).WithLow(new Register8(0x65)));
+			Register16.Empty.WithLow(new Register8(0x12)).Should().Be(new Register16(0x0012));
+			Register16.Empty.WithLow(new Register8(0x87)).Should().Be(new Register16(0x0087));
+			new Register16(0x1200).WithLow(new Register8(0x34)).Should().Be(new Register16(0x1234));
+			new Register16(0x8700).WithLow(new Register8(0x65)).Should().Be(new Register16(0x8765));
 		}
 
 		[Fact]
 		public void WithHighTest()
 		{
-			Assert.Equal(new Register16(0x1200), Register16.Empty.WithHigh(new Register8(0x12)));
-			Assert.Equal(new Register16(0x8700), Register16.Empty.WithHigh(new Register8(0x87)));
-			Assert.Equal(new Register16(0x1234), new Register16(0x0034).WithHigh(new Register8(0x12)));
-			Assert.Equal(new Register16(0x8765), new Register16(0x0065).WithHigh(new Register8(0x87)));
+			Register16.Empty.WithHigh(new Register8(0x12)).Should().Be(new Register16(0x1200));
+			Register16.Empty.WithHigh(new Register8(0x87)).Should().Be(new Register16(0x8700));
+			new Register16(0x0034).WithHigh(new Register8(0x12)).Should().Be(new Register16(0x1234));
+			new Register16(0x0065).WithHigh(new Register8(0x87)).Should().Be(new Register16(0x8765));
 		}
 	}
 }

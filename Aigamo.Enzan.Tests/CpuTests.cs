@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using FluentAssertions;
 using Xunit;
 
 namespace Aigamo.Enzan.Tests
@@ -20,24 +21,24 @@ namespace Aigamo.Enzan.Tests
 			_cpu.Esi = new Register32(0x51058209);
 			_cpu.Edi = new Register32(0x74944592);
 
-			Assert.Equal(new Register16(0x5926), _cpu.Ax);
-			Assert.Equal(new Register16(0x9793), _cpu.Cx);
-			Assert.Equal(new Register16(0x6264), _cpu.Dx);
-			Assert.Equal(new Register16(0x2795), _cpu.Bx);
-			Assert.Equal(new Register16(0x4197), _cpu.Sp);
-			Assert.Equal(new Register16(0x9937), _cpu.Bp);
-			Assert.Equal(new Register16(0x8209), _cpu.Si);
-			Assert.Equal(new Register16(0x4592), _cpu.Di);
+			_cpu.Ax.Should().Be(new Register16(0x5926));
+			_cpu.Cx.Should().Be(new Register16(0x9793));
+			_cpu.Dx.Should().Be(new Register16(0x6264));
+			_cpu.Bx.Should().Be(new Register16(0x2795));
+			_cpu.Sp.Should().Be(new Register16(0x4197));
+			_cpu.Bp.Should().Be(new Register16(0x9937));
+			_cpu.Si.Should().Be(new Register16(0x8209));
+			_cpu.Di.Should().Be(new Register16(0x4592));
 
-			Assert.Equal(new Register8(0x26), _cpu.Al);
-			Assert.Equal(new Register8(0x93), _cpu.Cl);
-			Assert.Equal(new Register8(0x64), _cpu.Dl);
-			Assert.Equal(new Register8(0x95), _cpu.Bl);
+			_cpu.Al.Should().Be(new Register8(0x26));
+			_cpu.Cl.Should().Be(new Register8(0x93));
+			_cpu.Dl.Should().Be(new Register8(0x64));
+			_cpu.Bl.Should().Be(new Register8(0x95));
 
-			Assert.Equal(new Register8(0x59), _cpu.Ah);
-			Assert.Equal(new Register8(0x97), _cpu.Ch);
-			Assert.Equal(new Register8(0x62), _cpu.Dh);
-			Assert.Equal(new Register8(0x27), _cpu.Bh);
+			_cpu.Ah.Should().Be(new Register8(0x59));
+			_cpu.Ch.Should().Be(new Register8(0x97));
+			_cpu.Dh.Should().Be(new Register8(0x62));
+			_cpu.Bh.Should().Be(new Register8(0x27));
 		}
 
 		[Fact]
@@ -61,14 +62,14 @@ namespace Aigamo.Enzan.Tests
 			_cpu.Si = new Register16(0x8209);
 			_cpu.Di = new Register16(0x4592);
 
-			Assert.Equal(new Register32(0x31415926), _cpu.Eax);
-			Assert.Equal(new Register32(0x53589793), _cpu.Ecx);
-			Assert.Equal(new Register32(0x23846264), _cpu.Edx);
-			Assert.Equal(new Register32(0x33832795), _cpu.Ebx);
-			Assert.Equal(new Register32(0x02884197), _cpu.Esp);
-			Assert.Equal(new Register32(0x16939937), _cpu.Ebp);
-			Assert.Equal(new Register32(0x51058209), _cpu.Esi);
-			Assert.Equal(new Register32(0x74944592), _cpu.Edi);
+			_cpu.Eax.Should().Be(new Register32(0x31415926));
+			_cpu.Ecx.Should().Be(new Register32(0x53589793));
+			_cpu.Edx.Should().Be(new Register32(0x23846264));
+			_cpu.Ebx.Should().Be(new Register32(0x33832795));
+			_cpu.Esp.Should().Be(new Register32(0x02884197));
+			_cpu.Ebp.Should().Be(new Register32(0x16939937));
+			_cpu.Esi.Should().Be(new Register32(0x51058209));
+			_cpu.Edi.Should().Be(new Register32(0x74944592));
 		}
 
 		[Fact]
@@ -89,10 +90,10 @@ namespace Aigamo.Enzan.Tests
 			_cpu.Dh = new Register8(0x62);
 			_cpu.Bh = new Register8(0x27);
 
-			Assert.Equal(new Register32(0x31415926), _cpu.Eax);
-			Assert.Equal(new Register32(0x53589793), _cpu.Ecx);
-			Assert.Equal(new Register32(0x23846264), _cpu.Edx);
-			Assert.Equal(new Register32(0x33832795), _cpu.Ebx);
+			_cpu.Eax.Should().Be(new Register32(0x31415926));
+			_cpu.Ecx.Should().Be(new Register32(0x53589793));
+			_cpu.Edx.Should().Be(new Register32(0x23846264));
+			_cpu.Ebx.Should().Be(new Register32(0x33832795));
 		}
 
 		[Theory]
@@ -200,11 +201,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Add32Test(uint left, uint right, uint result, bool carry, bool zero, bool sign, bool overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Add(new Register32(left), new Register32(right)));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Add(new Register32(left), new Register32(right)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -252,7 +253,7 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Add32_8Test(uint left, byte right, uint result)
 		{
-			Assert.Equal(new Register32(result), _cpu.Add(new Register32(left), new Register8(right)));
+			_cpu.Add(new Register32(left), new Register8(right)).Should().Be(new Register32(result));
 		}
 
 		[Theory]
@@ -276,11 +277,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void And8Test(byte left, byte right, byte result, bool zero, bool sign)
 		{
-			Assert.Equal(new Register8(result), _cpu.And(new Register8(left), new Register8(right)));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.And(new Register8(left), new Register8(right)).Should().Be(new Register8(result));
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -337,11 +338,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void And16Test(ushort left, ushort right, ushort result, bool zero, bool sign)
 		{
-			Assert.Equal(new Register16(result), _cpu.And(new Register16(left), new Register16(right)));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.And(new Register16(left), new Register16(right)).Should().Be(new Register16(result));
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -449,11 +450,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void And32Test(uint left, uint right, uint result, bool zero, bool sign)
 		{
-			Assert.Equal(new Register32(result), _cpu.And(new Register32(left), new Register32(right)));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.And(new Register32(left), new Register32(right)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -501,7 +502,7 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void And32_8Test(uint left, byte right, uint result)
 		{
-			Assert.Equal(new Register32(result), _cpu.And(new Register32(left), new Register8(right)));
+			_cpu.And(new Register32(left), new Register8(right)).Should().Be(new Register32(result));
 		}
 
 		[Theory]
@@ -521,8 +522,8 @@ namespace Aigamo.Enzan.Tests
 		{
 			_cpu.Eax = new Register32(value);
 			_cpu.Cdq();
-			Assert.Equal(new Register64(result).High, _cpu.Edx);
-			Assert.Equal(new Register64(result).Low, _cpu.Eax);
+			_cpu.Edx.Should().Be(new Register64(result).High);
+			_cpu.Eax.Should().Be(new Register64(result).Low);
 		}
 
 		[Theory]
@@ -580,10 +581,10 @@ namespace Aigamo.Enzan.Tests
 		public void Cmp16Test(ushort left, ushort right, bool carry, bool zero, bool sign, bool overflow)
 		{
 			_cpu.Cmp(new Register16(left), new Register16(right));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -692,10 +693,10 @@ namespace Aigamo.Enzan.Tests
 		public void Cmp32Test(uint left, uint right, bool carry, bool zero, bool sign, bool overflow)
 		{
 			_cpu.Cmp(new Register32(left), new Register32(right));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -713,22 +714,22 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Dec32Test(uint value, uint result, bool zero, bool sign, bool overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Dec(new Register32(value)));
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Dec(new Register32(value)).Should().Be(new Register32(result));
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Fact]
 		public void FaddTest()
 		{
-			Assert.Equal(1234.0 + 5678.0, _cpu.Fadd(Register64.FromDouble(1234), Register64.FromDouble(5678)).ToDouble());
+			_cpu.Fadd(Register64.FromDouble(1234), Register64.FromDouble(5678)).ToDouble().Should().Be(1234.0 + 5678.0);
 		}
 
 		[Fact]
 		public void FchsTest()
 		{
-			Assert.Equal(-1234.0, _cpu.Fchs(Register64.FromDouble(1234.0)).ToDouble());
+			_cpu.Fchs(Register64.FromDouble(1234.0)).ToDouble().Should().Be(-1234.0);
 		}
 
 		[Fact]
@@ -737,100 +738,100 @@ namespace Aigamo.Enzan.Tests
 			_cpu.Fpu.Stack.Push(Register64.FromDouble(0));
 
 			_cpu.Fcom(Register64.FromDouble(-1));
-			Assert.False(_cpu.Fpu.Status.C3);
-			Assert.False(_cpu.Fpu.Status.C2);
-			Assert.False(_cpu.Fpu.Status.C0);
+			_cpu.Fpu.Status.C3.Should().BeFalse();
+			_cpu.Fpu.Status.C2.Should().BeFalse();
+			_cpu.Fpu.Status.C0.Should().BeFalse();
 
 			_cpu.Fcom(Register64.FromDouble(0));
-			Assert.True(_cpu.Fpu.Status.C3);
-			Assert.False(_cpu.Fpu.Status.C2);
-			Assert.False(_cpu.Fpu.Status.C0);
+			_cpu.Fpu.Status.C3.Should().BeTrue();
+			_cpu.Fpu.Status.C2.Should().BeFalse();
+			_cpu.Fpu.Status.C0.Should().BeFalse();
 
 			_cpu.Fcom(Register64.FromDouble(1));
-			Assert.False(_cpu.Fpu.Status.C3);
-			Assert.False(_cpu.Fpu.Status.C2);
-			Assert.True(_cpu.Fpu.Status.C0);
+			_cpu.Fpu.Status.C3.Should().BeFalse();
+			_cpu.Fpu.Status.C2.Should().BeFalse();
+			_cpu.Fpu.Status.C0.Should().BeTrue();
 		}
 
 		[Fact]
 		public void FcosTest()
 		{
-			Assert.Equal(Math.Cos(1234.0), _cpu.Fcos(Register64.FromDouble(1234.0)).ToDouble());
+			_cpu.Fcos(Register64.FromDouble(1234.0)).ToDouble().Should().Be(Math.Cos(1234.0));
 		}
 
 		[Fact]
 		public void FdivTest()
 		{
-			Assert.Equal(1234.0 / 5678.0, _cpu.Fdiv(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble());
+			_cpu.Fdiv(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble().Should().Be(1234.0 / 5678.0);
 		}
 		
 		[Fact]
 		public void FdivrTest()
 		{
-			Assert.Equal(5678.0 / 1234.0, _cpu.Fdivr(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble());
+			_cpu.Fdivr(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble().Should().Be(5678.0 / 1234.0);
 		}
 
 		[Fact]
 		public void FidivTest()
 		{
-			Assert.Equal(1234.0 / 5678, _cpu.Fidiv(Register64.FromDouble(1234.0), new Register32(5678)).ToDouble());
+			_cpu.Fidiv(Register64.FromDouble(1234.0), new Register32(5678)).ToDouble().Should().Be(1234.0 / 5678);
 		}
 
 		[Fact]
 		public void FildTest()
 		{
 			_cpu.Fild(new Register32(1234));
-			Assert.Equal(1234.0, _cpu.Fpu.Stack.Pop().ToDouble());
+			_cpu.Fpu.Stack.Pop().ToDouble().Should().Be(1234.0);
 		}
 
 		[Fact]
 		public void FimulTest()
 		{
-			Assert.Equal(1234.0 * 5678, _cpu.Fimul(Register64.FromDouble(1234.0), new Register32(5678)).ToDouble());
+			_cpu.Fimul(Register64.FromDouble(1234.0), new Register32(5678)).ToDouble().Should().Be(1234.0 * 5678);
 		}
 
 		[Fact]
 		public void FldTest()
 		{
 			_cpu.Fld(Register64.FromDouble(1234.0));
-			Assert.Equal(1234.0, _cpu.Fpu.Stack.Pop().ToDouble());
+			_cpu.Fpu.Stack.Pop().ToDouble().Should().Be(1234.0);
 		}
 
 		[Fact]
 		public void FpatanTest()
 		{
-			Assert.Equal(Math.Atan2(1234.0, 5678.0), _cpu.Fpatan(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble());
+			_cpu.Fpatan(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble().Should().Be(Math.Atan2(1234.0, 5678.0));
 		}
 
 		[Fact]
 		public void FmulTest()
 		{
-			Assert.Equal(1234.0 * 5678.0, _cpu.Fmul(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble());
-			Assert.Equal(1234.0 * 5678.0f, _cpu.Fmul(Register64.FromDouble(1234.0), Register32.FromSingle(5678.0f)).ToDouble());
+			_cpu.Fmul(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble().Should().Be(1234.0 * 5678.0);
+			_cpu.Fmul(Register64.FromDouble(1234.0), Register32.FromSingle(5678.0f)).ToDouble().Should().Be(1234.0 * 5678.0f);
 		}
 
 		[Fact]
 		public void FsinTest()
 		{
-			Assert.Equal(Math.Sin(1234.0), _cpu.Fsin(Register64.FromDouble(1234.0)).ToDouble());
+			_cpu.Fsin(Register64.FromDouble(1234.0)).ToDouble().Should().Be(Math.Sin(1234.0));
 		}
 
 		[Fact]
 		public void FsubTest()
 		{
-			Assert.Equal(1234.0 - 5678.0, _cpu.Fsub(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble());
+			_cpu.Fsub(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble().Should().Be(1234.0 - 5678.0);
 		}
 
 		[Fact]
 		public void FsubrTest()
 		{
-			Assert.Equal(5678.0 - 1234.0, _cpu.Fsubr(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble());
+			_cpu.Fsubr(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).ToDouble().Should().Be(5678.0 - 1234.0);
 		}
 
 		[Fact]
 		public void FxchTest()
 		{
-			Assert.Equal((Register64.FromDouble(5678.0), Register64.FromDouble(1234.0)), _cpu.Fxch(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)));
+			_cpu.Fxch(Register64.FromDouble(1234.0), Register64.FromDouble(5678.0)).Should().Be((Register64.FromDouble(5678.0), Register64.FromDouble(1234.0)));
 		}
 
 		[Theory]
@@ -849,8 +850,8 @@ namespace Aigamo.Enzan.Tests
 			_cpu.Edx = new Register64((ulong)dividend).High;
 			_cpu.Eax = new Register64((ulong)dividend).Low;
 			_cpu.Idiv(new Register32((uint)divisor));
-			Assert.Equal(new Register32((uint)quotient), _cpu.Eax);
-			Assert.Equal(new Register32((uint)remainder), _cpu.Edx);
+			_cpu.Eax.Should().Be(new Register32((uint)quotient));
+			_cpu.Edx.Should().Be(new Register32((uint)remainder));
 		}
 
 		[Theory]
@@ -862,7 +863,7 @@ namespace Aigamo.Enzan.Tests
 		{
 			_cpu.Edx = new Register64(dividend).High;
 			_cpu.Eax = new Register64(dividend).Low;
-			Assert.Throws<ArithmeticException>(() => _cpu.Idiv(new Register32(divisor)));
+			_cpu.Invoking(cpu => cpu.Idiv(new Register32(divisor))).Should().Throw<ArithmeticException>();
 		}
 
 		[Theory]
@@ -885,7 +886,7 @@ namespace Aigamo.Enzan.Tests
 		{
 			_cpu.Edx = new Register64(dividend).High;
 			_cpu.Eax = new Register64(dividend).Low;
-			Assert.Throws<DivideByZeroException>(() => _cpu.Idiv(Register32.Empty));
+			_cpu.Invoking(cpu => cpu.Idiv(Register32.Empty)).Should().Throw<DivideByZeroException>();
 		}
 
 		[Theory]
@@ -995,10 +996,10 @@ namespace Aigamo.Enzan.Tests
 		{
 			_cpu.Eax = new Register32(left);
 			_cpu.Imul(new Register32(right));
-			Assert.Equal(new Register64(result).High, _cpu.Edx);
-			Assert.Equal(new Register64(result).Low, _cpu.Eax);
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Edx.Should().Be(new Register64(result).High);
+			_cpu.Eax.Should().Be(new Register64(result).Low);
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -1106,9 +1107,9 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Imul32TwoOperandTest(uint left, uint right, ulong result, bool carry, bool overflow)
 		{
-			Assert.Equal(new Register64(result).Low, _cpu.Imul(new Register32(left), new Register32(right)));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Imul(new Register32(left), new Register32(right)).Should().Be(new Register64(result).Low);
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -1126,10 +1127,10 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Inc32Test(uint value, uint result, bool zero, bool sign, bool overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Inc(new Register32(value)));
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Inc(new Register32(value)).Should().Be(new Register32(result));
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -1144,7 +1145,7 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Movsx16Test(ushort value, uint result)
 		{
-			Assert.Equal(new Register32(result), _cpu.Movsx(new Register16(value)));
+			_cpu.Movsx(new Register16(value)).Should().Be(new Register32(result));
 		}
 
 		[Theory]
@@ -1162,11 +1163,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Neg32Test(uint value, uint result, bool carry, bool zero, bool sign, bool overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Neg(new Register32(value)));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Neg(new Register32(value)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -1274,11 +1275,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Or32Test(uint left, uint right, uint result, bool zero, bool sign)
 		{
-			Assert.Equal(new Register32(result), _cpu.Or(new Register32(left), new Register32(right)));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.Or(new Register32(left), new Register32(right)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -1326,7 +1327,7 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Or32_8Test(uint left, byte right, uint result)
 		{
-			Assert.Equal(new Register32(result), _cpu.Or(new Register32(left), new Register8(right)));
+			_cpu.Or(new Register32(left), new Register8(right)).Should().Be(new Register32(result));
 		}
 
 		[Theory]
@@ -1374,15 +1375,15 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Sar32Test(uint value, byte count, uint result, bool? carry, bool? zero, bool? sign, bool? overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Sar(new Register32(value), new Register8(count)));
+			_cpu.Sar(new Register32(value), new Register8(count)).Should().Be(new Register32(result));
 			if (carry.HasValue)
-				Assert.Equal(carry.Value, _cpu.Eflags.Carry);
+				_cpu.Eflags.Carry.Should().Be(carry.Value);
 			if (zero.HasValue)
-				Assert.Equal(zero.Value, _cpu.Eflags.Zero);
+				_cpu.Eflags.Zero.Should().Be(zero.Value);
 			if (sign.HasValue)
-				Assert.Equal(sign.Value, _cpu.Eflags.Sign);
+				_cpu.Eflags.Sign.Should().Be(sign.Value);
 			if (overflow.HasValue)
-				Assert.Equal(overflow.Value, _cpu.Eflags.Overflow);
+				_cpu.Eflags.Overflow.Should().Be(overflow.Value);
 		}
 
 		[Theory]
@@ -1591,11 +1592,11 @@ namespace Aigamo.Enzan.Tests
 		public void Sbb32Test(bool borrow, uint left, uint right, uint result, bool carry, bool zero, bool sign, bool overflow)
 		{
 			_cpu.Eflags.Carry = borrow;
-			Assert.Equal(new Register32(result), _cpu.Sbb(new Register32(left), new Register32(right)));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Sbb(new Register32(left), new Register32(right)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -1704,10 +1705,10 @@ namespace Aigamo.Enzan.Tests
 		public void Sete32Test(uint left, uint right, byte cmpResult, byte testResult)
 		{
 			_cpu.Cmp(new Register32(left), new Register32(right));
-			Assert.Equal(new Register8(cmpResult), _cpu.Sete());
+			_cpu.Sete().Should().Be(new Register8(cmpResult));
 
 			_cpu.Test(new Register32(left), new Register32(right));
-			Assert.Equal(new Register8(testResult), _cpu.Sete());
+			_cpu.Sete().Should().Be(new Register8(testResult));
 		}
 
 		[Theory]
@@ -1816,10 +1817,10 @@ namespace Aigamo.Enzan.Tests
 		public void Setg32Test(uint left, uint right, byte cmpResult, byte testResult)
 		{
 			_cpu.Cmp(new Register32(left), new Register32(right));
-			Assert.Equal(new Register8(cmpResult), _cpu.Setg());
+			_cpu.Setg().Should().Be(new Register8(cmpResult));
 
 			_cpu.Test(new Register32(left), new Register32(right));
-			Assert.Equal(new Register8(testResult), _cpu.Setg());
+			_cpu.Setg().Should().Be(new Register8(testResult));
 		}
 
 		[Theory]
@@ -1867,15 +1868,15 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Shl32Test(uint value, byte count, uint result, bool? carry, bool? zero, bool? sign, bool? overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Shl(new Register32(value), new Register8(count)));
+			_cpu.Shl(new Register32(value), new Register8(count)).Should().Be(new Register32(result));
 			if (carry.HasValue)
-				Assert.Equal(carry.Value, _cpu.Eflags.Carry);
+				_cpu.Eflags.Carry.Should().Be(carry.Value);
 			if (zero.HasValue)
-				Assert.Equal(zero.Value, _cpu.Eflags.Zero);
+				_cpu.Eflags.Zero.Should().Be(zero.Value);
 			if (sign.HasValue)
-				Assert.Equal(sign.Value, _cpu.Eflags.Sign);
+				_cpu.Eflags.Sign.Should().Be(sign.Value);
 			if (overflow.HasValue)
-				Assert.Equal(overflow.Value, _cpu.Eflags.Overflow);
+				_cpu.Eflags.Overflow.Should().Be(overflow.Value);
 		}
 
 		[Theory]
@@ -1923,15 +1924,15 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Shr32Test(uint value, byte count, uint result, bool? carry, bool? zero, bool? sign, bool? overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Shr(new Register32(value), new Register8(count)));
+			_cpu.Shr(new Register32(value), new Register8(count)).Should().Be(new Register32(result));
 			if (carry.HasValue)
-				Assert.Equal(carry.Value, _cpu.Eflags.Carry);
+				_cpu.Eflags.Carry.Should().Be(carry.Value);
 			if (zero.HasValue)
-				Assert.Equal(zero.Value, _cpu.Eflags.Zero);
+				_cpu.Eflags.Zero.Should().Be(zero.Value);
 			if (sign.HasValue)
-				Assert.Equal(sign.Value, _cpu.Eflags.Sign);
+				_cpu.Eflags.Sign.Should().Be(sign.Value);
 			if (overflow.HasValue)
-				Assert.Equal(overflow.Value, _cpu.Eflags.Overflow);
+				_cpu.Eflags.Overflow.Should().Be(overflow.Value);
 		}
 
 		[Theory]
@@ -1988,11 +1989,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Sub16Test(ushort left, ushort right, ushort result, bool carry, bool zero, bool sign, bool overflow)
 		{
-			Assert.Equal(new Register16(result), _cpu.Sub(new Register16(left), new Register16(right)));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Sub(new Register16(left), new Register16(right)).Should().Be(new Register16(result));
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -2100,11 +2101,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Sub32Test(uint left, uint right, uint result, bool carry, bool zero, bool sign, bool overflow)
 		{
-			Assert.Equal(new Register32(result), _cpu.Sub(new Register32(left), new Register32(right)));
-			Assert.Equal(carry, _cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.Equal(overflow, _cpu.Eflags.Overflow);
+			_cpu.Sub(new Register32(left), new Register32(right)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().Be(carry);
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().Be(overflow);
 		}
 
 		[Theory]
@@ -2152,7 +2153,7 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Sub32_8Test(uint left, byte right, uint result)
 		{
-			Assert.Equal(new Register32(result), _cpu.Sub(new Register32(left), new Register8(right)));
+			_cpu.Sub(new Register32(left), new Register8(right)).Should().Be(new Register32(result));
 		}
 
 		[Theory]
@@ -2177,10 +2178,10 @@ namespace Aigamo.Enzan.Tests
 		public void Test8Test(byte left, byte right, bool zero, bool sign)
 		{
 			_cpu.Test(new Register8(left), new Register8(right));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -2238,10 +2239,10 @@ namespace Aigamo.Enzan.Tests
 		public void Test16Test(ushort left, ushort right, bool zero, bool sign)
 		{
 			_cpu.Test(new Register16(left), new Register16(right));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -2350,10 +2351,10 @@ namespace Aigamo.Enzan.Tests
 		public void Test32Test(uint left, uint right, bool zero, bool sign)
 		{
 			_cpu.Test(new Register32(left), new Register32(right));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Theory]
@@ -2461,11 +2462,11 @@ namespace Aigamo.Enzan.Tests
 		#endregion
 		public void Xor32Test(uint left, uint right, uint result, bool zero, bool sign)
 		{
-			Assert.Equal(new Register32(result), _cpu.Xor(new Register32(left), new Register32(right)));
-			Assert.False(_cpu.Eflags.Carry);
-			Assert.Equal(zero, _cpu.Eflags.Zero);
-			Assert.Equal(sign, _cpu.Eflags.Sign);
-			Assert.False(_cpu.Eflags.Overflow);
+			_cpu.Xor(new Register32(left), new Register32(right)).Should().Be(new Register32(result));
+			_cpu.Eflags.Carry.Should().BeFalse();
+			_cpu.Eflags.Zero.Should().Be(zero);
+			_cpu.Eflags.Sign.Should().Be(sign);
+			_cpu.Eflags.Overflow.Should().BeFalse();
 		}
 
 		[Fact]
@@ -2489,7 +2490,7 @@ namespace Aigamo.Enzan.Tests
 			builder.AppendLine($"{nameof(_cpu.Ebp)}: 16939937");
 			builder.AppendLine($"{nameof(_cpu.Esi)}: 51058209");
 			builder.AppendLine($"{nameof(_cpu.Edi)}: 74944592");
-			Assert.Equal(builder.ToString(), _cpu.ToString());
+			_cpu.ToString().Should().Be(builder.ToString());
 		}
 	}
 }
