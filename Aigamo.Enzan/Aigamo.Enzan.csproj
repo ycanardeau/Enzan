@@ -12,6 +12,7 @@
     <Description>Enzan is an x86 emulator written in C#.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Version>1.0.2</Version>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
