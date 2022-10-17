@@ -1,8 +1,7 @@
-﻿namespace Aigamo.Enzan
+namespace Aigamo.Enzan;
+
+public sealed class Fpu
 {
-	public sealed class Fpu
-	{
-		public FpuStack Stack { get; } = new();
-		public FpuStatus Status { get; } = new();
-	}
+	public FpuStack Stack { get; } = new();
+	public FpuStatus Status { get; } = new();
 }
