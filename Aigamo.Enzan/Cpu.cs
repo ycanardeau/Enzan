@@ -1,6 +1,5 @@
 // Comments from: Intel® 64 and IA-32 Architectures Software Developer Manual: Vol 2
 
-using System;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Aigamo.Extensions.Primitives;

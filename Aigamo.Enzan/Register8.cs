@@ -1,5 +1,3 @@
-using System;
-
 namespace Aigamo.Enzan;
 
 public readonly record struct Register8(byte Value) : IFormattable

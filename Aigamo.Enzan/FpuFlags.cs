@@ -1,5 +1,3 @@
-using System;
-
 namespace Aigamo.Enzan;
 
 [Flags]

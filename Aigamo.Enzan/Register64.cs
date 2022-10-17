@@ -1,4 +1,3 @@
-using System;
 using Aigamo.Extensions.Primitives;
 
 namespace Aigamo.Enzan;

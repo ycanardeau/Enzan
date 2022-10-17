@@ -1,6 +1,3 @@
-using FluentAssertions;
-using Xunit;
-
 namespace Aigamo.Enzan.Tests;
 
 public class Register32Tests
