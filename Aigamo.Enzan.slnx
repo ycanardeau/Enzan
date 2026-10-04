@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="Aigamo.Enzan.Benchmarks/Aigamo.Enzan.Benchmarks.csproj" />
+  <Project Path="Aigamo.Enzan.Tests/Aigamo.Enzan.Tests.csproj" />
+  <Project Path="Aigamo.Enzan/Aigamo.Enzan.csproj" />
+</Solution>
