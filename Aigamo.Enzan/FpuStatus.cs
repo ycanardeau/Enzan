@@ -30,7 +30,7 @@ public sealed class FpuStatus
 		set => Flags = value ? (Flags | FpuFlags.C3) : (Flags & ~FpuFlags.C3);
 	}
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Update(bool c3, bool c2, bool c0)
 	{
 		C3 = c3;

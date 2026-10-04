@@ -10,9 +10,9 @@ public readonly record struct Register64(ulong Value) : IFormattable
 
 	public bool IsEmpty => this == Empty;
 
-	public Register32 Low => new(Value.LowUInt32());
+	public Register32 Low => new(Value.LowUInt32);
 
-	public Register32 High => new(Value.HighUInt32());
+	public Register32 High => new(Value.HighUInt32);
 
 	public override string ToString() => Value.ToString();
 

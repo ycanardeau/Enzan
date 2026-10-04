@@ -13,14 +13,14 @@ public sealed class FpuStack
 		set => _registers[(_top + index) & 0b111] = value;
 	}
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Push(Register64 value)
 	{
 		_top = (_top - 1) & 0b111;
 		this[0] = value;
 	}
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Pop()
 	{
 		var ret = this[0];

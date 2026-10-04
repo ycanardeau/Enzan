@@ -130,7 +130,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Add.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Add(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)left.Value + (ulong)right.Value);
@@ -142,13 +142,13 @@ public sealed class Cpu
 	/// <summary>
 	/// Add.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Add(Register32 left, Register8 right) => Add(left, right.SignExtend().SignExtend());
 
 	/// <summary>
 	/// Logical AND.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register8 And(Register8 left, Register8 right)
 	{
 		var tmp = new Register16((ushort)((ushort)left.Value & (ushort)right.Value));
@@ -160,7 +160,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Logical AND.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register16 And(Register16 left, Register16 right)
 	{
 		var tmp = new Register32((uint)left.Value & (uint)right.Value);
@@ -172,7 +172,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Logical AND.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 And(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)left.Value & (ulong)right.Value);
@@ -184,19 +184,19 @@ public sealed class Cpu
 	/// <summary>
 	/// Logical AND.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 And(Register32 left, Register8 right) => And(left, right.SignExtend().SignExtend());
 
 	/// <summary>
 	/// Call procedure.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Call(Register32 value) => Callback?.Invoke(value);
 
 	/// <summary>
 	/// Convert doubleword to quadword.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Cdq()
 	{
 		var result = Eax.SignExtend();
@@ -207,31 +207,31 @@ public sealed class Cpu
 	/// <summary>
 	/// Compare two operands.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Cmp(Register16 left, Register16 right) => Sub(left, right);
 
 	/// <summary>
 	/// Compare two operands.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Cmp(Register16 left, Register8 right) => Cmp(left, right.SignExtend());
 
 	/// <summary>
 	/// Compare two operands.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Cmp(Register32 left, Register32 right) => Sub(left, right);
 
 	/// <summary>
 	/// Compare two operands.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Cmp(Register32 left, Register8 right) => Cmp(left, right.SignExtend().SignExtend());
 
 	/// <summary>
 	/// Decrement by 1.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Dec(Register32 value)
 	{
 		var tmp = new Register64((ulong)value.Value - 1);
@@ -243,19 +243,19 @@ public sealed class Cpu
 	/// <summary>
 	/// Add.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fadd(Register64 left, Register64 right) => Register64.FromDouble(left.ToDouble() + right.ToDouble());
 
 	/// <summary>
 	/// Change sign.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fchs(Register64 value) => Register64.FromDouble(-value.ToDouble());
 
 	/// <summary>
 	/// Compare floating point values.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Fcom(Register64 value)
 	{
 		if (Fpu.Stack[0].ToDouble() > value.ToDouble())
@@ -269,103 +269,103 @@ public sealed class Cpu
 	/// <summary>
 	/// Cosine.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fcos(Register64 value) => Register64.FromDouble(Math.Cos(value.ToDouble()));
 
 	/// <summary>
 	/// Reverse divide.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fdiv(Register64 dividend, Register64 divisor) => Register64.FromDouble(dividend.ToDouble() / divisor.ToDouble());
 
 	/// <summary>
 	/// Reverse divide.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fdivr(Register64 divisor, Register64 dividend) => Register64.FromDouble(dividend.ToDouble() / divisor.ToDouble());
 
 	/// <summary>
 	/// Divide.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fidiv(Register64 dividend, Register32 divisor) => Register64.FromDouble(dividend.ToDouble() / (int)divisor.Value);
 
 	/// <summary>
 	/// Load integer.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Fild(Register32 value) => Fpu.Stack.Push(Register64.FromDouble((int)value.Value));
 
 	/// <summary>
 	/// Multiply.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fimul(Register64 left, Register32 right) => Register64.FromDouble(left.ToDouble() * (int)right.Value);
 
 	/// <summary>
 	/// Load floating point value.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Fld(Register64 value) => Fpu.Stack.Push(value);
 
 	/// <summary>
 	/// Store x87 FPU status word.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register16 Fnstsw() => new Register16((ushort)Fpu.Status.Flags);
 
 	/// <summary>
 	/// Partial arctangent.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fpatan(Register64 y, Register64 x) => Register64.FromDouble(Math.Atan2(y.ToDouble(), x.ToDouble()));
 
 	/// <summary>
 	/// Multiply.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fmul(Register64 left, Register64 right) => Register64.FromDouble(left.ToDouble() * right.ToDouble());
 
 	/// <summary>
 	/// Multiply.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fmul(Register64 left, Register32 right) => Register64.FromDouble(left.ToDouble() * right.ToSingle());
 
 	/// <summary>
 	/// Sine.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fsin(Register64 value) => Register64.FromDouble(Math.Sin(value.ToDouble()));
 
 	/// <summary>
 	/// Store floating point value.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fst(Register64 value) => value;
 
 	/// <summary>
 	/// Subtract.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fsub(Register64 left, Register64 right) => Register64.FromDouble(left.ToDouble() - right.ToDouble());
 
 	/// <summary>
 	/// Reverse subtract.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register64 Fsubr(Register64 left, Register64 right) => Register64.FromDouble(right.ToDouble() - left.ToDouble());
 
 	/// <summary>
 	/// Exchange register contents.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public (Register64, Register64) Fxch(Register64 left, Register64 right) => (right, left);
 
 	/// <summary>
 	/// Signed divide.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Idiv(Register32 value)
 	{
 		if (value == Register32.Empty)
@@ -382,7 +382,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Signed multiply.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Imul(Register32 value)
 	{
 		var tmp = new Register64((ulong)((long)(int)Eax.Value * (long)(int)value.Value));
@@ -394,7 +394,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Signed multiply.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Imul(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)((long)(int)left.Value * (long)(int)right.Value));
@@ -405,7 +405,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Increment by 1.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Inc(Register32 value)
 	{
 		var tmp = new Register64((ulong)value.Value + 1);
@@ -467,37 +467,37 @@ public sealed class Cpu
 	/// <summary>
 	/// Load effective address.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Lea(Register32 value) => value;
 
 	/// <summary>
 	/// Move.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register8 Mov(Register8 value) => value;
 
 	/// <summary>
 	/// Move.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register16 Mov(Register16 value) => value;
 
 	/// <summary>
 	/// Move.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Mov(Register32 value) => value;
 
 	/// <summary>
 	/// Move with sign-extension.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Movsx(Register16 value) => value.SignExtend();
 
 	/// <summary>
 	/// Two's complement negation.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Neg(Register32 value)
 	{
 		var tmp = new Register64((uint)-value.Value);
@@ -509,7 +509,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Logical inclusive OR.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Or(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)left.Value | (ulong)right.Value);
@@ -521,27 +521,27 @@ public sealed class Cpu
 	/// <summary>
 	/// Logical inclusive OR.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Or(Register32 left, Register8 right) => Or(left, right.SignExtend().SignExtend());
 
 	/// <summary>
 	/// Pop a value from the stack.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Pop32()
 	{
-		var ret = new Register32(BitConverter.ToUInt32(Memory.Slice((int)(Esp - Offset).Value).Span));
+		var ret = new Register32(BitConverterExtensions.ToUInt32(Memory.Slice((int)(Esp - Offset).Value).Span));
 		Esp += new Register32(4);
 		return ret;
 	}
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Push(Register8 value) => Push(new Register32(value.Value));
 
 	/// <summary>
 	/// Push doubleword onto the stack.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Push(Register32 value)
 	{
 		Esp -= new Register32(4);
@@ -551,7 +551,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Arithmetic right shift.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Sar(Register32 value, Register8 count)
 	{
 		if ((count.Value & 0x1f) == 0)
@@ -570,7 +570,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Integer subtraction with borrow.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Sbb(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)left.Value - (ulong)(right.Value + (Eflags.Carry ? 1 : 0)));
@@ -582,19 +582,19 @@ public sealed class Cpu
 	/// <summary>
 	/// Set byte if equal.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register8 Sete() => Eflags.Zero ? Register8.One : Register8.Empty;
 
 	/// <summary>
 	/// Set byte if greater.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register8 Setg() => !Eflags.Zero && Eflags.Sign == Eflags.Overflow ? Register8.One : Register8.Empty;
 
 	/// <summary>
 	/// Left shift.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Shl(Register32 value, Register8 count)
 	{
 		if ((count.Value & 0x1f) == 0)
@@ -613,7 +613,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Logical right shift.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Shr(Register32 value, Register8 count)
 	{
 		if ((count.Value & 0x1f) == 0)
@@ -632,7 +632,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Subtract.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register16 Sub(Register16 left, Register16 right)
 	{
 		var tmp = new Register32((uint)left.Value - (uint)right.Value);
@@ -644,7 +644,7 @@ public sealed class Cpu
 	/// <summary>
 	/// Subtract.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Sub(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)left.Value - (ulong)right.Value);
@@ -656,31 +656,31 @@ public sealed class Cpu
 	/// <summary>
 	/// Subtract.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Sub(Register32 left, Register8 right) => Sub(left, right.SignExtend().SignExtend());
 
 	/// <summary>
 	/// Logical compare.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Test(Register8 left, Register8 right) => And(left, right);
 
 	/// <summary>
 	/// Logical compare.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Test(Register16 left, Register16 right) => And(left, right);
 
 	/// <summary>
 	/// Logical compare.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Test(Register32 left, Register32 right) => And(left, right);
 
 	/// <summary>
 	/// Logical exclusive OR.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 Xor(Register32 left, Register32 right)
 	{
 		var tmp = new Register64((ulong)left.Value ^ (ulong)right.Value);

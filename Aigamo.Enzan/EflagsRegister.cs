@@ -80,7 +80,7 @@ public sealed class EflagsRegister
 	/// </summary>
 	public bool Jae => !Carry;
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Update(bool carry, bool zero, bool sign, bool overflow)
 	{
 		Carry = carry;

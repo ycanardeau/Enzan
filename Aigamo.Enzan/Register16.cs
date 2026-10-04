@@ -9,9 +9,9 @@ public readonly record struct Register16(ushort Value) : IFormattable
 
 	public bool IsEmpty => this == Empty;
 
-	public Register8 Low => new(Value.LowByte());
+	public Register8 Low => new(Value.LowByte);
 
-	public Register8 High => new(Value.HighByte());
+	public Register8 High => new(Value.HighByte);
 
 	public bool Sign => ((Value >> 15) & 1) != 0;
 
@@ -23,6 +23,6 @@ public readonly record struct Register16(ushort Value) : IFormattable
 
 	public string ToString(string? format, IFormatProvider? provider) => Value.ToString(format, provider);
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Register32 SignExtend() => new((uint)(short)Value);
 }
