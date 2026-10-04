@@ -4,14 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>preview</LangVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Product>Enzan</Product>
     <Authors>ycanardeau</Authors>
     <PackageProjectUrl>https://github.com/ycanardeau/Enzan</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ycanardeau/Enzan</RepositoryUrl>
     <Description>Enzan is an x86 emulator written in C#.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.0</Version>
     <NoWarn>1701;1702;1591</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
